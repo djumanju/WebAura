@@ -1,7 +1,7 @@
 // CORS proxy configuration for Anixart API
 // Set your Cloudflare Worker URL here after deployment
 // Example: https://your-worker.workers.dev/?url=
-const CORS_PROXY = 'https://anix-proxy.hxshiiko.workers.dev/?url=';
+const CORS_PROXY = ''; // Cloudflare Worker blocked by API. Try direct.
 
 export function proxyUrl(url: string): string {
   if (CORS_PROXY) {
