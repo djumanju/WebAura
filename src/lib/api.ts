@@ -1,12 +1,11 @@
 import type { IRelease, IEpisode, IDubber, ISource, IProfile } from './types';
+import { proxyUrl } from './cors';
 
 const API_BASE = 'https://api-s.anixsekai.com';
 const USER_AGENT = 'AnixartApp/9.0 BETA 7-25082901 (Android 9; SDK 28; x86_64; ROG ASUS AI2201_B; ru)';
 
 function corsUrl(path: string): string {
-  const url = `${API_BASE}${path}`;
-  // If CORS fails, prepend proxy. For now try direct.
-  return url;
+  return proxyUrl(`${API_BASE}${path}`);
 }
 
 function headers(token?: string | null): Record<string, string> {
