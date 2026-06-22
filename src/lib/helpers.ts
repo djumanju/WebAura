@@ -1,7 +1,7 @@
 export function posterUrl(url: string): string {
   if (!url) return '';
   if (url.startsWith('http')) return url;
-  return `https://anixart-anime.ru/${url}`;
+  return `https://s.anixmirai.com/posters/${url}.jpg`;
 }
 
 export function formatRating(n: number): string {
