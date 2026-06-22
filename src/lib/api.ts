@@ -82,19 +82,16 @@ export async function getRelease(id: number, token?: string): Promise<IRelease |
 }
 
 export async function filterReleases(params: Record<string, any>, page: number = 0, token?: string): Promise<IRelease[]> {
-  const body: any = {};
-  if (params.genres) body.genres = params.genres;
-  if (params.status_id) body.status_id = params.status_id;
-  if (params.category_id) body.category_id = params.category_id;
-  if (params.sort !== undefined) body.sort = params.sort;
-  if (params.types) body.types = params.types;
-  if (params.season) body.season = params.season;
-  if (params.start_year) body.start_year = params.start_year;
-  if (params.end_year) body.end_year = params.end_year;
-  const data: any = await apiCall(`/filter/${page}`, {
-    method: 'POST', body, token,
-    params: { extended_mode: 'true' }
-  });
+  const qp: Record<string, any> = { extended_mode: 'true' };
+  if (params.genres) qp.genres = params.genres;
+  if (params.status_id) qp.status_id = params.status_id;
+  if (params.category_id) qp.category_id = params.category_id;
+  if (params.sort !== undefined) qp.sort = params.sort;
+  if (params.types) qp.types = params.types;
+  if (params.season) qp.season = params.season;
+  if (params.start_year) qp.start_year = params.start_year;
+  if (params.end_year) qp.end_year = params.end_year;
+  const data: any = await apiCall(`/filter/${page}`, { params: qp, token });
   return data?.content ?? [];
 }
 
@@ -116,9 +113,7 @@ export async function getEpisodes(releaseId: number, typeId: number, sourceId: n
 
 // Search
 export async function searchReleases(query: string, page: number = 0, token?: string): Promise<IRelease[]> {
-  const data: any = await apiCall(`/search/releases/${page}`, {
-    method: 'POST', body: { query }, token
-  });
+  const data: any = await apiCall(`/search/releases/${page}`, { params: { query }, token });
   return data?.content ?? [];
 }
 

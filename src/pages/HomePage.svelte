@@ -33,7 +33,7 @@
   {#if loading}
     <p style="color:var(--text3)">Загрузка...</p>
   {:else}
-    <Shelf title="Топ" {items} {navigate} />
+    <Shelf title="Топ" items={featured} {navigate} />
     <Shelf title="Новинки" items={newReleases} {navigate} />
     <Shelf title="Популярное" items={popular} {navigate} />
   {/if}
